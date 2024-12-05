@@ -1,53 +1,51 @@
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".SampleActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".SampleActivity">
 
-	<View
-		android:id="@+id/color_screen"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		/>
+  <View
+    android:id="@+id/color_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_centerVertical="true"
-		android:gravity="center"
-		android:orientation="vertical">
-		<Button
-			android:id="@+id/btn_dialog"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="open dialog sample"
-			/>
-		<Button
-			android:id="@+id/btn_adapted_dialog"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="open adapted dialog sample"
-			/>
-		<Button
-			android:id="@+id/btn_view"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="open view sample"
-			/>
-		<Button
-			android:id="@+id/btn_prefs"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="open preference sample"
-			/>
-		<Button
-			android:id="@+id/btn_fragment"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="open fragment sample"
-		/>
-	</LinearLayout>
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+      android:id="@+id/btn_dialog"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="open dialog sample"/>
+
+    <Button
+      android:id="@+id/btn_adapted_dialog"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="open adapted dialog sample"/>
+
+    <Button
+      android:id="@+id/btn_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="open view sample"/>
+
+    <Button
+      android:id="@+id/btn_prefs"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="open preference sample"/>
+
+    <Button
+      android:id="@+id/btn_fragment"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="open fragment sample"/>
+  </LinearLayout>
 
 </RelativeLayout>
