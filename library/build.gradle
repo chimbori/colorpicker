@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
 	namespace "com.flask.colorpicker"
@@ -15,6 +16,25 @@ android {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+	publishing {
+		singleVariant('release') {
+			withSourcesJar()
+		}
+	}
+}
+
+publishing {
+	publications {
+		release(MavenPublication) {
+			groupId = 'com.chimbori'
+			artifactId = 'color-picker'
+			version = '1.0'
+
+			afterEvaluate {
+				from components.release
+			}
 		}
 	}
 }
