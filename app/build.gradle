@@ -2,13 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
 	namespace "com.flask.colorpicker.sample"
-	compileSdkVersion 29
-	buildToolsVersion "29.0.0"
 
 	defaultConfig {
-		applicationId "com.flask.colorpicker.sample"
-		minSdkVersion 14
-		targetSdkVersion 29
+		compileSdk 34
+		targetSdk 34
+		minSdk 14
+
 		versionCode 10
 		versionName "1.0.10"
 
@@ -29,6 +28,11 @@ android {
 //				signingConfig signingConfigs.release
 //		}
 //	}
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
