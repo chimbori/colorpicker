@@ -1,9 +1,10 @@
+*.apk
 *.iml
-.gradle
-/local.properties
-/.idea/
+*.keystore
 .DS_Store
-/build
-/captures
-gradle.properties
-.externalNativeBuild
+.gradle
+.idea
+.kotlin
+build/
+keystore.properties
+local.properties
