@@ -6,7 +6,7 @@ android {
 	defaultConfig {
 		compileSdk 34
 		targetSdk 34
-		minSdk 14
+		minSdk 21
 
 		versionCode 10
 		versionName "1.0.10"
@@ -33,12 +33,15 @@ android {
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
 	targetCompatibility = JavaVersion.VERSION_17
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
 }
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation project(":library")
-	implementation 'androidx.appcompat:appcompat:1.1.0'
-	implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
-	implementation 'com.google.android.material:material:1.0.0'
+	implementation 'androidx.appcompat:appcompat:1.7.0'
+	implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+	implementation 'com.google.android.material:material:1.12.0'
 }
