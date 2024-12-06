@@ -1,0 +1,56 @@
+name: Publish AAR to GitHub Releases
+
+env:
+  LIBRARY_BASE_NAME: colorpicker
+  BUILD_OUTPUT_AAR_PATH: library/build/outputs/aar/library-release.aar
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"  # Matches "v1.2.3"
+  workflow_dispatch:  # Run manually from the Actions tab.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Validate Gradle Wrapper
+      uses: gradle/actions/wrapper-validation@v3
+
+    - name: Compute Variables
+      # Remove prefixes from tag, leaving only the X.Y.Z version string. ("refs/tags/v111.22.33" --> "111.22.33")
+      run: |
+        VERSION_NAME=$(echo "${{ github.ref }}" | sed -E 's|^[^0-9]*([0-9]+\.[0-9]+\.[0-9]+).*$|\1|')
+        echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
+        echo "LIBRARY_NAME_WITH_VERSION=${{ env.LIBRARY_BASE_NAME }}-$VERSION_NAME.aar" >> $GITHUB_ENV
+
+    - name: Publish Library Locally
+      run: ./gradlew :assemble
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+
+    - name: Upload AAR to GitHub Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.BUILD_OUTPUT_AAR_PATH }}
+        asset_name: ${{ env.LIBRARY_NAME_WITH_VERSION }}
+        asset_content_type: application/vnd.android.package-archive
