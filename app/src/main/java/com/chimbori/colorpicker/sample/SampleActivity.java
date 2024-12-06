@@ -12,14 +12,14 @@ import com.chimbori.colorpicker.builder.ColorPickerDialogBuilder;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class SampleActivity extends AppCompatActivity {
-  private View root;
+  private View colorPreview;
   private int currentBackgroundColor = 0xffffffff;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sample);
-    root = findViewById(R.id.color_screen);
+    colorPreview = findViewById(R.id.color_preview);
     changeBackgroundColor(currentBackgroundColor);
 
     findViewById(R.id.btn_dialog).setOnClickListener(v ->
@@ -58,10 +58,12 @@ public class SampleActivity extends AppCompatActivity {
             .show());
     findViewById(R.id.btn_view).setOnClickListener(view ->
         startActivity(new Intent(this, SampleActivity2.class)));
+
+    ((ColorPickerView) findViewById(R.id.color_picker)).addOnColorChangedListener(this::changeBackgroundColor);
   }
 
   private void changeBackgroundColor(int selectedColor) {
     currentBackgroundColor = selectedColor;
-    root.setBackgroundColor(selectedColor);
+    colorPreview.setBackgroundColor(selectedColor);
   }
 }

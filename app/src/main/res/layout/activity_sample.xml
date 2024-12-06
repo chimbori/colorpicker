@@ -1,24 +1,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/color_screen"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:layout_centerHorizontal="true"
   android:layout_centerVertical="true"
+  android:background="?attr/colorSurface"
   android:gravity="center"
   android:orientation="vertical"
+  android:padding="@dimen/spacing_200"
   tools:context=".SampleActivity">
+
+  <com.google.android.material.card.MaterialCardView
+    style="@style/Widget.Material3.CardView.Filled"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_200"
+    app:cardCornerRadius="@dimen/spacing_100">
+
+    <TextView
+      android:id="@+id/color_preview"
+      style="@style/TextAppearance.Material3.DisplayMedium"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/spacing_500"
+      android:gravity="center"
+      android:padding="@dimen/spacing_50"
+      android:text="@string/app_name"/>
+  </com.google.android.material.card.MaterialCardView>
+
+  <TextView
+    style="@style/TextAppearance.Material3.TitleLarge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/dialog_sample"/>
 
   <Button
     android:id="@+id/btn_dialog"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="open dialog sample"/>
+    android:text="@string/open_dialog"/>
 
-  <Button
-    android:id="@+id/btn_view"
+  <TextView
+    style="@style/TextAppearance.Material3.TitleLarge"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacing_200"
+    android:layout_marginBottom="@dimen/spacing_100"
+    android:text="@string/view_sample"/>
+
+  <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="open view sample"/>
+    android:orientation="vertical">
+
+    <com.chimbori.colorpicker.ColorPickerView
+      android:id="@+id/color_picker"
+      android:layout_width="@dimen/custom_view_size"
+      android:layout_height="wrap_content"
+      app:alphaSlider="true"
+      app:alphaSliderView="@+id/alpha_slider"
+      app:density="12"
+      app:lightnessSlider="true"
+      app:lightnessSliderView="@+id/lightness_slider"
+      app:wheelType="FLOWER"/>
+
+    <com.chimbori.colorpicker.slider.LightnessSlider
+      android:id="@+id/lightness_slider"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/spacing_300"/>
+
+    <com.chimbori.colorpicker.slider.AlphaSlider
+      android:id="@+id/alpha_slider"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/spacing_300"/>
+
+  </LinearLayout>
 
 </LinearLayout>
