@@ -8,7 +8,6 @@ on:
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"  # Matches "v1.2.3"
-  workflow_dispatch:  # Run manually from the Actions tab.
 
 jobs:
   build:
