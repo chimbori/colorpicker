@@ -1,7 +1,5 @@
 package com.chimbori.colorpicker.sample;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
 import com.chimbori.colorpicker.ColorPickerView;
-import com.chimbori.colorpicker.OnColorChangedListener;
-import com.chimbori.colorpicker.OnColorSelectedListener;
-import com.chimbori.colorpicker.builder.ColorPickerClickListener;
 import com.chimbori.colorpicker.builder.ColorPickerDialogBuilder;
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class SampleActivity extends AppCompatActivity {
   private View root;
@@ -31,91 +26,51 @@ public class SampleActivity extends AppCompatActivity {
     root = findViewById(R.id.color_screen);
     changeBackgroundColor(currentBackgroundColor);
 
-    findViewById(R.id.btn_dialog).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        final Context context = SampleActivity.this;
-
+    findViewById(R.id.btn_dialog).setOnClickListener(v ->
         ColorPickerDialogBuilder
-            .with(context)
+            .with(this)
             .setTitle(R.string.color_dialog_title)
             .initialColor(currentBackgroundColor)
             .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
             .density(12)
-            .setOnColorChangedListener(new OnColorChangedListener() {
-              @Override
-              public void onColorChanged(int selectedColor) {
-                // Handle on color change
-                Log.d("ColorPicker", "onColorChanged: 0x" + Integer.toHexString(selectedColor));
-              }
-            })
-            .setOnColorSelectedListener(new OnColorSelectedListener() {
-              @Override
-              public void onColorSelected(int selectedColor) {
-                toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
-              }
-            })
-            .setPositiveButton("ok", new ColorPickerClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                changeBackgroundColor(selectedColor);
-                if (allColors != null) {
-                  StringBuilder sb = null;
+            .setOnColorChangedListener(selectedColor ->
+                Log.d("ColorPicker", "onColorChanged: 0x" + Integer.toHexString(selectedColor)))
+            .setOnColorSelectedListener(selectedColor ->
+                Toast.makeText(this, "onColorSelected: 0x" + Integer.toHexString(selectedColor), LENGTH_SHORT).show())
+            .setPositiveButton("ok", (dialog, selectedColor, allColors) -> {
+              changeBackgroundColor(selectedColor);
+              if (allColors != null) {
+                StringBuilder sb = null;
 
-                  for (Integer color : allColors) {
-                    if (color == null)
-                      continue;
-                    if (sb == null)
-                      sb = new StringBuilder("Color List:");
-                    sb.append("\r\n#" + Integer.toHexString(color).toUpperCase());
-                  }
-
-                  if (sb != null)
-                    Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+                for (Integer color : allColors) {
+                  if (color == null)
+                    continue;
+                  if (sb == null)
+                    sb = new StringBuilder("Color List:");
+                  sb.append("\r\n#").append(Integer.toHexString(color).toUpperCase());
                 }
+
+                if (sb != null)
+                  Toast.makeText(getApplicationContext(), sb.toString(), LENGTH_SHORT).show();
               }
             })
-            .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-              }
+            .setNegativeButton("cancel", (dialog, which) -> {
             })
             .showColorEdit(true)
             .setColorEditTextColor(ContextCompat.getColor(SampleActivity.this, android.R.color.holo_blue_bright))
             .build()
-            .show();
-      }
-    });
-    findViewById(R.id.btn_adapted_dialog).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        DialogFragment dialogFragment = new AdaptedDialogFragment();
-        dialogFragment.show(getSupportFragmentManager(), "adapted_dialog");
-      }
-    });
-    findViewById(R.id.btn_view).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(SampleActivity.this, SampleActivity2.class);
-        startActivity(intent);
-      }
-    });
-    findViewById(R.id.btn_fragment).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        final Intent intent = new Intent(SampleActivity.this, SampleActivity3.class);
-        startActivity(intent);
-      }
-    });
+            .show());
+    findViewById(R.id.btn_adapted_dialog).setOnClickListener(view ->
+        new AdaptedDialogFragment().show(getSupportFragmentManager(), "adapted_dialog"));
+    findViewById(R.id.btn_view).setOnClickListener(view ->
+        startActivity(new Intent(this, SampleActivity2.class)));
+    findViewById(R.id.btn_fragment).setOnClickListener(view ->
+        startActivity(new Intent(this, SampleActivity3.class)));
   }
 
   private void changeBackgroundColor(int selectedColor) {
     currentBackgroundColor = selectedColor;
     root.setBackgroundColor(selectedColor);
-  }
-
-  private void toast(String text) {
-    Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
   }
 
   public static class AdaptedDialogFragment extends AppCompatDialogFragment {
