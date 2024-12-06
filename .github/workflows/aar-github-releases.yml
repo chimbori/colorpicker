@@ -34,7 +34,7 @@ jobs:
         echo "LIBRARY_NAME_WITH_VERSION=${{ env.LIBRARY_BASE_NAME }}-$VERSION_NAME.aar" >> $GITHUB_ENV
 
     - name: Publish Library Locally
-      run: ./gradlew :assemble
+      run: ./gradlew assemble
 
     - name: Create GitHub Release
       id: create_release
