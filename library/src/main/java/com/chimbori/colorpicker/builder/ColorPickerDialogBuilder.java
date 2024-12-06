@@ -20,6 +20,7 @@ import com.chimbori.colorpicker.Utils;
 import com.chimbori.colorpicker.renderer.ColorWheelRenderer;
 import com.chimbori.colorpicker.slider.AlphaSlider;
 import com.chimbori.colorpicker.slider.LightnessSlider;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class ColorPickerDialogBuilder {
   private AlertDialog.Builder builder;
@@ -48,7 +49,7 @@ public class ColorPickerDialogBuilder {
     defaultMargin = getDimensionAsPx(context, R.dimen.default_slider_margin);
     defaultMarginTop = getDimensionAsPx(context, R.dimen.default_margin_top);
 
-    builder = new AlertDialog.Builder(context, theme);
+    builder = new MaterialAlertDialogBuilder(context, theme);
     pickerContainer = new LinearLayout(context);
     pickerContainer.setOrientation(LinearLayout.VERTICAL);
     pickerContainer.setGravity(Gravity.CENTER_HORIZONTAL);
