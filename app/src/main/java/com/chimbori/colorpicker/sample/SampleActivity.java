@@ -1,12 +1,11 @@
 package com.chimbori.colorpicker.sample;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import com.chimbori.colorpicker.ColorPickerView;
 import com.chimbori.colorpicker.builder.ColorPickerDialogBuilder;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -33,7 +32,7 @@ public class SampleActivity extends AppCompatActivity {
                 Log.d("ColorPicker", "onColorChanged: 0x" + Integer.toHexString(selectedColor)))
             .setOnColorSelectedListener(selectedColor ->
                 Toast.makeText(this, "onColorSelected: 0x" + Integer.toHexString(selectedColor), LENGTH_SHORT).show())
-            .setPositiveButton("ok", (dialog, selectedColor, allColors) -> {
+            .setPositiveButton(android.R.string.ok, (dialog, selectedColor, allColors) -> {
               changeBackgroundColor(selectedColor);
               if (allColors != null) {
                 StringBuilder sb = null;
@@ -50,14 +49,12 @@ public class SampleActivity extends AppCompatActivity {
                   Toast.makeText(getApplicationContext(), sb.toString(), LENGTH_SHORT).show();
               }
             })
-            .setNegativeButton("cancel", (dialog, which) -> {
+            .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
             })
             .showColorEdit(true)
-            .setColorEditTextColor(ContextCompat.getColor(SampleActivity.this, android.R.color.holo_blue_bright))
+            .setColorEditTextColor(Color.DKGRAY)
             .build()
             .show());
-    findViewById(R.id.btn_view).setOnClickListener(view ->
-        startActivity(new Intent(this, SampleActivity2.class)));
 
     ((ColorPickerView) findViewById(R.id.color_picker)).addOnColorChangedListener(this::changeBackgroundColor);
   }
