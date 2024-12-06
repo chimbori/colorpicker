@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-  namespace "com.flask.colorpicker.sample"
+  namespace "com.chimbori.colorpicker.sample"
 
   defaultConfig {
     compileSdk 34

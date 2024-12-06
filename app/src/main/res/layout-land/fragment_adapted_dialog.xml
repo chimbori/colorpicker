@@ -5,7 +5,7 @@
   android:layout_height="match_parent"
   android:orientation="horizontal">
 
-  <com.flask.colorpicker.ColorPickerView
+  <com.chimbori.colorpicker.ColorPickerView
     android:id="@+id/color_picker_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,13 +16,13 @@
     app:lightnessSliderView="@+id/v_lightness_slider"
     app:wheelType="FLOWER"/>
 
-  <com.flask.colorpicker.slider.LightnessSlider
+  <com.chimbori.colorpicker.slider.LightnessSlider
     android:id="@+id/v_lightness_slider"
     android:layout_width="48dp"
     android:layout_height="match_parent"
     app:inVerticalOrientation="true"/>
 
-  <com.flask.colorpicker.slider.AlphaSlider
+  <com.chimbori.colorpicker.slider.AlphaSlider
     android:id="@+id/v_alpha_slider"
     android:layout_width="48dp"
     android:layout_height="match_parent"

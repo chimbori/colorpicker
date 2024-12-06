@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-  namespace "com.flask.colorpicker"
+  namespace "com.chimbori.colorpicker"
 
   defaultConfig {
     compileSdk 34
@@ -29,7 +29,7 @@ publishing {
   publications {
     release(MavenPublication) {
       groupId = 'com.chimbori'
-      artifactId = 'color-picker'
+      artifactId = 'colorpicker'
       version = '1.0'
 
       afterEvaluate {
@@ -45,6 +45,5 @@ java {
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation 'androidx.appcompat:appcompat:1.7.0'
 }

@@ -1,130 +1,106 @@
-Color Picker
--------------
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Color%20Picker-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1693)
-![https://img.shields.io/github/tag/QuadFlask/colorpicker.svg?label=maven](https://img.shields.io/github/tag/QuadFlask/colorpicker.svg?label=maven)
+# Color Picker
 
-![icon](https://github.com/QuadFlask/colorpicker/blob/master/app/src/main/res/drawable-xxxhdpi/ic_launcher.png)
+Color Picker for Android with a Color Wheel and a Lightness Bar
 
-simple android color picker with color wheel and lightness bar.
+![icon](icon.webp)
 
-[Play Store link](https://play.google.com/store/apps/details?id=com.flask.colorpicker.sample)
-
-## Demo video
-
-[Youtube](https://youtu.be/MwWi9X7eqNI)
-
-
-## Screenshot
+## Screenshots
 
 ### WHEEL_TYPE.FLOWER
-![screenshot3.png](https://github.com/QuadFlask/colorpicker/blob/master/screenshot/screenshot3.png)
+![screenshot3.png](screenshot/screenshot3.png)
 
 ### WHEEL_TYPE.CIRCLE
-![screenshot.png](https://github.com/QuadFlask/colorpicker/blob/master/screenshot/screenshot.png)
+![screenshot.png](screenshot/screenshot.png)
 
+## Demo Video
 
-## How to add dependency?
+- https://youtu.be/MwWi9X7eqNI
 
-This library is not released in Maven Central, but instead you can use [JitPack](https://jitpack.io)
+## Setup
 
-add remote maven url in `allprojects.repositories`
+This library is distributed via JitPack:
 
-```groovy
-allprojects {
-	repositories {
-		maven { url "https://jitpack.io" }
-	}
-}
-```
+- Add Maven URL in `allprojects.repositories`
 
-then add a library dependency
+    ```groovy
+    allprojects {
+      repositories {
+        maven { url "https://jitpack.io" }
+      }
+    }
+    ```
 
-```groovy
-dependencies {
-	implementation 'com.github.QuadFlask:colorpicker:0.0.15'
-}
-```
+- Add a library dependency:
 
-or, you can manually download `aar` and put into your project's `libs` directory.
-
-and add dependency
-
-```groovy
-dependencies {
-	compile(name:'[arrFileName]', ext:'aar')
-}
-```
-
-> check out latest version at [releases](https://github.com/QuadFlask/colorpicker/releases)
+    ```groovy
+    dependencies {
+      // Use the latest version from https://github.com/chimbori/colorpicker/releases .
+      implementation 'com.github.chimbori:colorpicker:x.y.z'
+    }
+    ```
 
 ## Usage
-As a dialog
+
+### Use as a Dialog
+
 ```java
 ColorPickerDialogBuilder
-	.with(context)
-	.setTitle("Choose color")
-	.initialColor(currentBackgroundColor)
-	.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-	.density(12)
-	.setOnColorSelectedListener(new OnColorSelectedListener() {
-		@Override
-		public void onColorSelected(int selectedColor) {
-			toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
-		}
-	})
-	.setPositiveButton("ok", new ColorPickerClickListener() {
-		@Override
-		public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-			changeBackgroundColor(selectedColor);
-		}
-	})
-	.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-		}
-	})
-	.build()
-	.show();
+  .with(context)
+  .setTitle("Choose color")
+  .initialColor(currentBackgroundColor)
+  .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+  .density(12)
+  .setOnColorSelectedListener(new OnColorSelectedListener() {
+    @Override
+    public void onColorSelected(int selectedColor) {
+      toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
+    }
+  })
+  .setPositiveButton("ok", new ColorPickerClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+      changeBackgroundColor(selectedColor);
+    }
+  })
+  .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+    }
+  })
+  .build()
+  .show();
 ```
-As a widget
+
+### Use as a Custom View
+
 ```xml
-	<com.flask.colorpicker.ColorPickerView
-		android:id="@+id/color_picker_view"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:alphaSlider="true"
-		app:density="12"
-		app:lightnessSlider="true"
-		app:wheelType="FLOWER"
-		app:lightnessSliderView="@+id/v_lightness_slider"
-	    app:alphaSliderView="@+id/v_alpha_slider"
-		/>
+<com.chimbori.colorpicker.ColorPickerView
+  android:id="@+id/color_picker_view"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  app:alphaSlider="true"
+  app:density="12"
+  app:lightnessSlider="true"
+  app:wheelType="FLOWER"
+  app:lightnessSliderView="@+id/v_lightness_slider"
+  app:alphaSliderView="@+id/v_alpha_slider"/>
 
-	<com.flask.colorpicker.slider.LightnessSlider
-		android:id="@+id/v_lightness_slider"
-		android:layout_width="match_parent"
-		android:layout_height="48dp"
-		/>
+<com.chimbori.colorpicker.slider.LightnessSlider
+  android:id="@+id/v_lightness_slider"
+  android:layout_width="match_parent"
+  android:layout_height="48dp"/>
 
-	<com.flask.colorpicker.slider.AlphaSlider
-		android:id="@+id/v_alpha_slider"
-		android:layout_width="match_parent"
-		android:layout_height="48dp"
-		/>
+<com.chimbori.colorpicker.slider.AlphaSlider
+  android:id="@+id/v_alpha_slider"
+  android:layout_width="match_parent"
+  android:layout_height="48dp"/>
 ```
-
-
-## To do
-
-* gradle support
-* performance improvement
-* refactoring
-
 
 ## License
 
 ```
-Copyright 2014-2017 QuadFlask
+Copyright 2024+ — Chimbori, makers of Hermit Lite Apps Browser
+Copyright 2014-2017 — QuadFlask
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
