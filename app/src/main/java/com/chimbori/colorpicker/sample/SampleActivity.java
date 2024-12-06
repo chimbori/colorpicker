@@ -3,13 +3,9 @@ package com.chimbori.colorpicker.sample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.content.ContextCompat;
 import com.chimbori.colorpicker.ColorPickerView;
 import com.chimbori.colorpicker.builder.ColorPickerDialogBuilder;
@@ -60,8 +56,6 @@ public class SampleActivity extends AppCompatActivity {
             .setColorEditTextColor(ContextCompat.getColor(SampleActivity.this, android.R.color.holo_blue_bright))
             .build()
             .show());
-    findViewById(R.id.btn_adapted_dialog).setOnClickListener(view ->
-        new AdaptedDialogFragment().show(getSupportFragmentManager(), "adapted_dialog"));
     findViewById(R.id.btn_view).setOnClickListener(view ->
         startActivity(new Intent(this, SampleActivity2.class)));
     findViewById(R.id.btn_fragment).setOnClickListener(view ->
@@ -71,16 +65,5 @@ public class SampleActivity extends AppCompatActivity {
   private void changeBackgroundColor(int selectedColor) {
     currentBackgroundColor = selectedColor;
     root.setBackgroundColor(selectedColor);
-  }
-
-  public static class AdaptedDialogFragment extends AppCompatDialogFragment {
-    public AdaptedDialogFragment() {
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      return inflater.inflate(R.layout.fragment_adapted_dialog, container);
-    }
   }
 }
