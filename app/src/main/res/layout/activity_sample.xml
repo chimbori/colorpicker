@@ -1,34 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/color_screen"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:layout_centerHorizontal="true"
+  android:layout_centerVertical="true"
+  android:gravity="center"
+  android:orientation="vertical"
   tools:context=".SampleActivity">
 
-  <View
-    android:id="@+id/color_screen"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
-
-  <LinearLayout
+  <Button
+    android:id="@+id/btn_dialog"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:text="open dialog sample"/>
 
-    <Button
-      android:id="@+id/btn_dialog"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="open dialog sample"/>
+  <Button
+    android:id="@+id/btn_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="open view sample"/>
 
-    <Button
-      android:id="@+id/btn_view"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="open view sample"/>
-
-  </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>
