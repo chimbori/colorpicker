@@ -58,8 +58,6 @@ public class SampleActivity extends AppCompatActivity {
             .show());
     findViewById(R.id.btn_view).setOnClickListener(view ->
         startActivity(new Intent(this, SampleActivity2.class)));
-    findViewById(R.id.btn_fragment).setOnClickListener(view ->
-        startActivity(new Intent(this, SampleActivity3.class)));
   }
 
   private void changeBackgroundColor(int selectedColor) {

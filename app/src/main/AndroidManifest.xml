@@ -16,10 +16,6 @@
       </intent-filter>
     </activity>
     <activity android:name=".SampleActivity2"/>
-    <activity
-      android:name=".SampleActivity3"
-      android:label="@string/title_activity_sample3"
-      android:theme="@style/AppTheme"/>
   </application>
 
 </manifest>
