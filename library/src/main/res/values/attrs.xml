@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <declare-styleable name="ColorPickerPreference">
+  <declare-styleable name="ColorPickerView">
     <attr name="alphaSlider" format="boolean"/>
     <attr name="lightnessSlider" format="boolean"/>
     <attr name="border" format="boolean"/>

@@ -100,18 +100,18 @@ public class ColorPickerView extends View {
   }
 
   private void initWith(Context context, AttributeSet attrs) {
-    final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerPreference);
+    final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerView);
 
-    density = typedArray.getInt(R.styleable.ColorPickerPreference_density, 10);
-    initialColor = typedArray.getInt(R.styleable.ColorPickerPreference_initialColor, 0xffffffff);
+    density = typedArray.getInt(R.styleable.ColorPickerView_density, 10);
+    initialColor = typedArray.getInt(R.styleable.ColorPickerView_initialColor, 0xffffffff);
 
-    pickerColorEditTextColor = typedArray.getInt(R.styleable.ColorPickerPreference_pickerColorEditTextColor, 0xffffffff);
+    pickerColorEditTextColor = typedArray.getInt(R.styleable.ColorPickerView_pickerColorEditTextColor, 0xffffffff);
 
-    WHEEL_TYPE wheelType = WHEEL_TYPE.indexOf(typedArray.getInt(R.styleable.ColorPickerPreference_wheelType, 0));
+    WHEEL_TYPE wheelType = WHEEL_TYPE.indexOf(typedArray.getInt(R.styleable.ColorPickerView_wheelType, 0));
     ColorWheelRenderer renderer = ColorWheelRendererBuilder.getRenderer(wheelType);
 
-    alphaSliderViewId = typedArray.getResourceId(R.styleable.ColorPickerPreference_alphaSliderView, 0);
-    lightnessSliderViewId = typedArray.getResourceId(R.styleable.ColorPickerPreference_lightnessSliderView, 0);
+    alphaSliderViewId = typedArray.getResourceId(R.styleable.ColorPickerView_alphaSliderView, 0);
+    lightnessSliderViewId = typedArray.getResourceId(R.styleable.ColorPickerView_lightnessSliderView, 0);
 
     setRenderer(renderer);
     setDensity(density);

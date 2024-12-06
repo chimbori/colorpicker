@@ -93,12 +93,6 @@ public class SampleActivity extends AppCompatActivity {
         dialogFragment.show(getSupportFragmentManager(), "adapted_dialog");
       }
     });
-    findViewById(R.id.btn_prefs).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        startActivity(new Intent(SampleActivity.this, PrefsActivity.class));
-      }
-    });
     findViewById(R.id.btn_view).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
