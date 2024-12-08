@@ -44,29 +44,19 @@ This library is distributed via JitPack:
 ### Use as a Dialog
 
 ```java
-ColorPickerDialogBuilder
-  .with(context)
+ColorPickerDialogBuilder.with(context)
   .setTitle("Choose color")
+  .showColorEdit(true)
   .initialColor(currentBackgroundColor)
   .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-  .density(12)
-  .setOnColorSelectedListener(new OnColorSelectedListener() {
-    @Override
-    public void onColorSelected(int selectedColor) {
-      toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
-    }
-  })
-  .setPositiveButton("ok", new ColorPickerClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+  .setOnColorChangedListener(selectedColor ->
+      Log.d("ColorPicker", "onColorChanged: 0x" + Integer.toHexString(selectedColor)))
+  .setOnColorSelectedListener(selectedColor ->
+      Toast.makeText(this, "onColorSelected: 0x" + Integer.toHexString(selectedColor), LENGTH_SHORT).show())
+  .setPositiveButton(android.R.string.ok, (dialog, selectedColor, allColors) -> {
       changeBackgroundColor(selectedColor);
-    }
   })
-  .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-    }
-  })
+  .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
   .build()
   .show();
 ```
@@ -79,7 +69,6 @@ ColorPickerDialogBuilder
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   app:alphaSlider="true"
-  app:density="12"
   app:lightnessSlider="true"
   app:wheelType="FLOWER"
   app:lightnessSliderView="@+id/v_lightness_slider"

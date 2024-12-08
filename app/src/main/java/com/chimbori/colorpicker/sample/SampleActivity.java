@@ -22,12 +22,10 @@ public class SampleActivity extends AppCompatActivity {
     changeBackgroundColor(currentBackgroundColor);
 
     findViewById(R.id.btn_dialog).setOnClickListener(v ->
-        ColorPickerDialogBuilder
-            .with(this)
+        ColorPickerDialogBuilder.with(this)
             .setTitle(R.string.color_dialog_title)
             .initialColor(currentBackgroundColor)
             .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-            .density(12)
             .setOnColorChangedListener(selectedColor ->
                 Log.d("ColorPicker", "onColorChanged: 0x" + Integer.toHexString(selectedColor)))
             .setOnColorSelectedListener(selectedColor ->
