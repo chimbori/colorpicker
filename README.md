@@ -1,20 +1,24 @@
 # Color Picker
 
-Color Picker for Android with a Color Wheel and a Lightness Bar
-
-![icon](icon.webp)
+Color Picker component for Android with a Color Wheel and a Lightness Bar
 
 ## Screenshots
 
-### WHEEL_TYPE.FLOWER
-![screenshot3.png](screenshot/screenshot3.png)
+### Dialog
 
-### WHEEL_TYPE.CIRCLE
-![screenshot.png](screenshot/screenshot.png)
+<img src="screenshots/dialog.webp" width="400">
 
-## Demo Video
+### Dark Mode
 
-- https://youtu.be/MwWi9X7eqNI
+<img src="screenshots/dark-mode.webp" width="400">
+
+### Light Mode
+
+<img src="screenshots/light-mode.webp" width="400">
+
+### Wheel Type: CIRCLE
+
+<img src="screenshots/wheel-type-circle.webp" width="400">
 
 ## Setup
 
