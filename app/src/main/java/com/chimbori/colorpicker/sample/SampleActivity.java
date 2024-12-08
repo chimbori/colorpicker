@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.chimbori.colorpicker.ColorPickerView;
 import com.chimbori.colorpicker.builder.ColorPickerDialogBuilder;
@@ -17,6 +18,7 @@ public class SampleActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    EdgeToEdge.enable(this);
     setContentView(R.layout.activity_sample);
     colorPreview = findViewById(R.id.color_preview);
     changeBackgroundColor(currentBackgroundColor);
