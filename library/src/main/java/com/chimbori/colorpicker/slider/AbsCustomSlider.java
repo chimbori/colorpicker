@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.DimenRes;
 import com.chimbori.colorpicker.R;
+import static android.graphics.Bitmap.Config.ARGB_8888;
+import static android.graphics.PorterDuff.Mode.CLEAR;
 
 public abstract class AbsCustomSlider extends View {
   protected Bitmap bitmap;
@@ -73,12 +74,12 @@ public abstract class AbsCustomSlider extends View {
       height = getHeight();
     }
 
-    bar = Bitmap.createBitmap(Math.max(width - barOffsetX * 2, 1), barHeight, Bitmap.Config.ARGB_8888);
+    bar = Bitmap.createBitmap(Math.max(width - barOffsetX * 2, 1), barHeight, ARGB_8888);
     barCanvas = new Canvas(bar);
 
     if (bitmap == null || bitmap.getWidth() != width || bitmap.getHeight() != height) {
       if (bitmap != null) bitmap.recycle();
-      bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+      bitmap = Bitmap.createBitmap(width, height, ARGB_8888);
       bitmapCanvas = new Canvas(bitmap);
     }
   }
@@ -101,7 +102,7 @@ public abstract class AbsCustomSlider extends View {
     }
 
     if (bar != null && bitmapCanvas != null) {
-      bitmapCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+      bitmapCanvas.drawColor(0, CLEAR);
       bitmapCanvas.drawBitmap(bar, barOffsetX, (height - bar.getHeight()) / 2, null);
 
       float x = handleRadius + value * (width - handleRadius * 2);

@@ -2,7 +2,6 @@ package com.chimbori.colorpicker.builder;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.InputFilter;
 import android.view.Gravity;
@@ -21,6 +20,7 @@ import com.chimbori.colorpicker.renderer.ColorWheelRenderer;
 import com.chimbori.colorpicker.slider.AlphaSlider;
 import com.chimbori.colorpicker.slider.LightnessSlider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import static android.graphics.Color.WHITE;
 
 public class ColorPickerDialogBuilder {
   private AlertDialog.Builder builder;
@@ -254,7 +254,7 @@ public class ColorPickerDialogBuilder {
 
       if (initialColor.length == 0) {
         ImageView colorImage = (ImageView) View.inflate(context, R.layout.color_selector, null);
-        colorImage.setImageDrawable(new ColorDrawable(Color.WHITE));
+        colorImage.setImageDrawable(new ColorDrawable(WHITE));
       } else {
         for (int i = 0; i < initialColor.length && i < this.pickerCount; i++) {
           if (initialColor[i] == null)
@@ -285,7 +285,7 @@ public class ColorPickerDialogBuilder {
 
   private int getStartColor(Integer[] colors) {
     Integer startColor = getStartOffset(colors);
-    return startColor == null ? Color.WHITE : colors[startColor];
+    return startColor == null ? WHITE : colors[startColor];
   }
 
   private void positiveButtonOnClick(DialogInterface dialog, ColorPickerClickListener onClickListener) {

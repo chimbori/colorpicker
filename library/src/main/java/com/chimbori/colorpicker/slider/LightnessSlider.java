@@ -4,17 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import com.chimbori.colorpicker.ColorPickerView;
 import com.chimbori.colorpicker.Utils;
 import com.chimbori.colorpicker.builder.PaintBuilder;
+import static android.graphics.Color.WHITE;
+import static android.graphics.PorterDuff.Mode.CLEAR;
 
 public class LightnessSlider extends AbsCustomSlider {
   private int color;
   private Paint barPaint = PaintBuilder.newPaint().build();
   private Paint solid = PaintBuilder.newPaint().build();
-  private Paint clearingStroke = PaintBuilder.newPaint().color(0xffffffff).xPerMode(PorterDuff.Mode.CLEAR).build();
+  private Paint clearingStroke = PaintBuilder.newPaint().color(WHITE).xPerMode(CLEAR).build();
 
   private ColorPickerView colorPicker;
 

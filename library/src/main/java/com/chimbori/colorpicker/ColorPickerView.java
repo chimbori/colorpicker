@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -23,6 +22,10 @@ import com.chimbori.colorpicker.renderer.ColorWheelRenderer;
 import com.chimbori.colorpicker.slider.AlphaSlider;
 import com.chimbori.colorpicker.slider.LightnessSlider;
 import java.util.ArrayList;
+import static android.graphics.Bitmap.Config.ARGB_8888;
+import static android.graphics.Color.TRANSPARENT;
+import static android.graphics.Color.WHITE;
+import static android.graphics.PorterDuff.Mode.CLEAR;
 
 public class ColorPickerView extends View {
   private static final float STROKE_RATIO = 1.5f;
@@ -103,9 +106,9 @@ public class ColorPickerView extends View {
     final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerView);
 
     density = typedArray.getInt(R.styleable.ColorPickerView_density, 10);
-    initialColor = typedArray.getInt(R.styleable.ColorPickerView_initialColor, 0xffffffff);
+    initialColor = typedArray.getInt(R.styleable.ColorPickerView_initialColor, WHITE);
 
-    pickerColorEditTextColor = typedArray.getInt(R.styleable.ColorPickerView_pickerColorEditTextColor, 0xffffffff);
+    pickerColorEditTextColor = typedArray.getInt(R.styleable.ColorPickerView_pickerColorEditTextColor, WHITE);
 
     WHEEL_TYPE wheelType = WHEEL_TYPE.indexOf(typedArray.getInt(R.styleable.ColorPickerView_wheelType, 0));
     ColorWheelRenderer renderer = ColorWheelRendererBuilder.getRenderer(wheelType);
@@ -155,12 +158,12 @@ public class ColorPickerView extends View {
     if (width <= 0)
       return;
     if (colorWheel == null || colorWheel.getWidth() != width) {
-      colorWheel = Bitmap.createBitmap(width, width, Bitmap.Config.ARGB_8888);
+      colorWheel = Bitmap.createBitmap(width, width, ARGB_8888);
       colorWheelCanvas = new Canvas(colorWheel);
       alphaPatternPaint.setShader(PaintBuilder.createAlphaPatternShader(26));
     }
     if (currentColor == null || currentColor.getWidth() != width) {
-      currentColor = Bitmap.createBitmap(width, width, Bitmap.Config.ARGB_8888);
+      currentColor = Bitmap.createBitmap(width, width, ARGB_8888);
       currentColorCanvas = new Canvas(currentColor);
     }
     drawColorWheel();
@@ -168,8 +171,8 @@ public class ColorPickerView extends View {
   }
 
   private void drawColorWheel() {
-    colorWheelCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
-    currentColorCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+    colorWheelCanvas.drawColor(0, CLEAR);
+    currentColorCanvas.drawColor(0, CLEAR);
 
     if (renderer == null) return;
 
@@ -283,7 +286,7 @@ public class ColorPickerView extends View {
       currentColorCanvas.drawCircle(currentColorCircle.getX(), currentColorCircle.getY(), size + 4, alphaPatternPaint);
       currentColorCanvas.drawCircle(currentColorCircle.getX(), currentColorCircle.getY(), size + 4, colorWheelFill);
 
-      selectorStroke = PaintBuilder.newPaint().color(0xffffffff).style(Paint.Style.STROKE).stroke(size * (STROKE_RATIO - 1)).xPerMode(PorterDuff.Mode.CLEAR).build();
+      selectorStroke = PaintBuilder.newPaint().color(WHITE).style(Paint.Style.STROKE).stroke(size * (STROKE_RATIO - 1)).xPerMode(CLEAR).build();
 
       if (showBorder)
         colorWheelCanvas.drawCircle(currentColorCircle.getX(), currentColorCircle.getY(), size + (selectorStroke.getStrokeWidth() / 2f), selectorStroke);
@@ -359,7 +362,7 @@ public class ColorPickerView extends View {
     this.initialColors = colors;
     this.colorSelection = selectedColor;
     Integer initialColor = this.initialColors[this.colorSelection];
-    if (initialColor == null) initialColor = 0xffffffff;
+    if (initialColor == null) initialColor = WHITE;
     setInitialColor(initialColor, true);
   }
 
@@ -483,7 +486,7 @@ public class ColorPickerView extends View {
         continue;
       LinearLayout childLayout = (LinearLayout) childView;
       if (i == selectedColor) {
-        childLayout.setBackgroundColor(Color.WHITE);
+        childLayout.setBackgroundColor(WHITE);
       }
       ImageView childImage = (ImageView) childLayout.findViewById(R.id.image_preview);
       childImage.setClickable(true);
@@ -517,9 +520,9 @@ public class ColorPickerView extends View {
         continue;
       LinearLayout childLayout = (LinearLayout) childView;
       if (i == previewNumber) {
-        childLayout.setBackgroundColor(Color.WHITE);
+        childLayout.setBackgroundColor(WHITE);
       } else {
-        childLayout.setBackgroundColor(Color.TRANSPARENT);
+        childLayout.setBackgroundColor(TRANSPARENT);
       }
     }
   }

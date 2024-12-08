@@ -1,6 +1,5 @@
 package com.chimbori.colorpicker.sample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,11 +8,13 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.chimbori.colorpicker.ColorPickerView;
 import com.chimbori.colorpicker.builder.ColorPickerDialogBuilder;
+import static android.graphics.Color.DKGRAY;
+import static android.graphics.Color.WHITE;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class SampleActivity extends AppCompatActivity {
   private View colorPreview;
-  private int currentBackgroundColor = 0xffffffff;
+  private int currentBackgroundColor = WHITE;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class SampleActivity extends AppCompatActivity {
             .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
             })
             .showColorEdit(true)
-            .setColorEditTextColor(Color.DKGRAY)
+            .setColorEditTextColor(DKGRAY)
             .build()
             .show());
 

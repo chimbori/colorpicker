@@ -4,18 +4,20 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import com.chimbori.colorpicker.ColorPickerView;
 import com.chimbori.colorpicker.Utils;
 import com.chimbori.colorpicker.builder.PaintBuilder;
+import static android.graphics.Bitmap.Config.ARGB_8888;
+import static android.graphics.Color.WHITE;
+import static android.graphics.PorterDuff.Mode.CLEAR;
 
 public class AlphaSlider extends AbsCustomSlider {
   public int color;
   private Paint alphaPatternPaint = PaintBuilder.newPaint().build();
   private Paint barPaint = PaintBuilder.newPaint().build();
   private Paint solid = PaintBuilder.newPaint().build();
-  private Paint clearingStroke = PaintBuilder.newPaint().color(0xffffffff).xPerMode(PorterDuff.Mode.CLEAR).build();
+  private Paint clearingStroke = PaintBuilder.newPaint().color(WHITE).xPerMode(CLEAR).build();
 
   private Paint clearStroke = PaintBuilder.newPaint().build();
   private Bitmap clearBitmap;
@@ -39,7 +41,7 @@ public class AlphaSlider extends AbsCustomSlider {
   protected void createBitmaps() {
     super.createBitmaps();
     alphaPatternPaint.setShader(PaintBuilder.createAlphaPatternShader(barHeight * 2));
-    clearBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+    clearBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), ARGB_8888);
     clearBitmapCanvas = new Canvas(clearBitmap);
   }
 
@@ -72,11 +74,11 @@ public class AlphaSlider extends AbsCustomSlider {
     if (value < 1) {
       // this fixes the same artifact issue from ColorPickerView
       // happens when alpha pattern is drawn underneath a circle with the same size
-      clearBitmapCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+      clearBitmapCanvas.drawColor(0, CLEAR);
       clearBitmapCanvas.drawCircle(x, y, handleRadius * 0.75f + 4, alphaPatternPaint);
       clearBitmapCanvas.drawCircle(x, y, handleRadius * 0.75f + 4, solid);
 
-      clearStroke = PaintBuilder.newPaint().color(0xffffffff).style(Paint.Style.STROKE).stroke(6).xPerMode(PorterDuff.Mode.CLEAR).build();
+      clearStroke = PaintBuilder.newPaint().color(WHITE).style(Paint.Style.STROKE).stroke(6).xPerMode(CLEAR).build();
       clearBitmapCanvas.drawCircle(x, y, handleRadius * 0.75f + (clearStroke.getStrokeWidth() / 2), clearStroke);
       canvas.drawBitmap(clearBitmap, 0, 0, null);
     } else {
